@@ -14,8 +14,11 @@
  * getLastTime          获取前、后 几天 日期
  * getDateOfWeek        获取该日期所在周，周一到周天的日期
  * */ 
-// 手机号前三后四显示
-// 定义一个函数，它接受一个字符串参数，并返回一个字符串
+// 
+/**
+* 手机号前三后四显示
+* @param tel: 手机号
+*/
 export function telFormat(tel: string): string {
   tel = String(tel);
   const phoneReg: RegExp = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
@@ -25,25 +28,31 @@ export function telFormat(tel: string): string {
   return `${tel.slice(0, 3)}****${tel.slice(7)}`;
 }
 
-
-// 字符串首字母大写
+/**
+* 字符串首字母大写
+* @param str
+*/
 export function firstLetterUpper(str: string): string {
   // 将字符串的第一个字母转换为大写，然后与剩余的字符串连接
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 
-// 格式化日期 dateFormat("YYYY-mm-dd HH:MM:SS", date)
-export function dateFormat(fmt: string, timeStamp: any): string {
+/**
+* 格式化日期
+* @param fmt：格式YYYY-mm-dd HH:MM:SS等
+* @param date 日期
+*/
+export function dateFormat(fmt: string, date: any): string {
   let ret: RegExpExecArray | null;
-  const date = new Date(timeStamp);
+  const newDate = new Date(date);
   const opt: { [key: string]: string } = {
-    "Y+": date.getFullYear().toString(), // 年
-    "m+": (date.getMonth() + 1).toString(), // 月
-    "d+": date.getDate().toString(), // 日
-    "H+": date.getHours().toString(), // 时
-    "M+": date.getMinutes().toString(), // 分
-    "S+": date.getSeconds().toString(), // 秒
+    "Y+": newDate.getFullYear().toString(), // 年
+    "m+": (newDate.getMonth() + 1).toString(), // 月
+    "d+": newDate.getDate().toString(), // 日
+    "H+": newDate.getHours().toString(), // 时
+    "M+": newDate.getMinutes().toString(), // 分
+    "S+": newDate.getSeconds().toString(), // 秒
     // 有其他格式化字符需求可以继续添加，必须转化成字符串
   };
   let k: string;
@@ -60,13 +69,17 @@ export function dateFormat(fmt: string, timeStamp: any): string {
 }
 
 
-// 刚刚、几天前、几个月前、几年前
-export function beforeDateFormat(current: string | Date | number | undefined): string | undefined {
-  if (!current) {
+/**
+* 判断时间过去了多久
+* @param date 日期
+* @returns 刚刚、几天前、几个月前、几年前
+*/
+export function beforeDateFormat(date: string | Date | number | undefined): string | undefined {
+  if (!date) {
     return undefined;
   }
   // 将输入转换为日期对象
-  let timePublish: Date = new Date(current);
+  let timePublish: Date = new Date(date);
   let timeNow: Date = new Date();
   let minute: number = 1000 * 60;
   let hour: number = minute * 60;
@@ -103,7 +116,13 @@ export function beforeDateFormat(current: string | Date | number | undefined): s
 }
 
 
-// 时间差
+/**
+* 时间差
+* @param startTime 开始时间
+* @param endTime 结束时间
+* @param type 类型， 非必填
+* @returns **年**月**日 时分秒
+*/
 export function calculateDiffTime(startTime: string | number | Date, endTime: string | number | Date, type?: number): string {
   let startTimeDate: Date = new Date(startTime);
   let endTimeDate: Date = new Date(endTime);
@@ -149,8 +168,11 @@ export function calculateDiffTime(startTime: string | number | Date, endTime: st
 }
 
 
-// 星期几 
-// 定义一个名为 getWeek 的函数，该函数接受一个可选参数 current
+/**
+* 星期几
+* @param current 日期
+* @returns 星期一 到 星期日
+*/
 export function getWeek(current?: string | number | Date): string {
   const week: number = current ? new Date(current).getDay() : new Date().getDay();
   const map: { [key: number]: string } = {
@@ -166,7 +188,10 @@ export function getWeek(current?: string | number | Date): string {
 }
 
 
-// 数字 逢三一断,过滤器
+/**
+* 数字 逢三一断
+* @param value 数字
+*/
 export function numFilterThreeCut(value: string | number | null): string {
   if (!value) return '0.00';
   if (value === '-') {
@@ -198,7 +223,10 @@ export function numFilterThreeCut(value: string | number | null): string {
 }
 
 
-// 数字转为大写金额
+/**
+* 数字转为大写金额
+* @param value 数字
+*/
 export function digitUppercase(n: number): string {
   const fraction: string[] = ['角', '分'];
   const digit: string[] = [
@@ -233,7 +261,10 @@ export function digitUppercase(n: number): string {
 }
 
 
-// 将阿拉伯数字翻译成中文的大写数字
+/**
+* 将阿拉伯数字翻译成中文的大写数字
+* @param value 数字
+*/
 export function changeToChinese(num: number): string {
   const AA: string[] = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
   const BB: string[] = ["", "十", "百", "千", "万", "亿", "点", ""];
@@ -272,7 +303,10 @@ export function changeToChinese(num: number): string {
 }
 
 
-// 获取链接参数  根据&划分
+/**
+* 获取链接参数
+* @param str
+*/
 export function urlToObject(url?: string): { [key: string]: string } {
   const result: { [key: string]: string } = {};
   if (url) {
@@ -290,8 +324,11 @@ export function urlToObject(url?: string): { [key: string]: string } {
 }
 
 
-// 数组去重
-interface UniqueOptions<T> {
+/**
+* 数组去重
+* @param 数组
+*/
+export interface UniqueOptions<T> {
   key?: keyof T; // 可选的键，用于数组对象的去重
 }
 export function uniqueArrayAndObject<T>(arr: T[], options?: UniqueOptions<T>): T[] {
@@ -348,12 +385,13 @@ export function uniqueArrayByProperty<T, K extends keyof T>( arr: T[], property:
   return result;
 }
 
-// 数组排序
+
 /**
- * 兼容： 数组、数组对象
- * 升序、降序
- * */ 
-interface SortOptions<T> {
+* 数组排序
+* @param 数组
+* 兼容： 数组、数组对象、升序、降序
+*/
+export interface SortOptions<T> {
   key?: keyof T; // 可选的键，用于数组对象的排序
   order: 'asc' | 'desc'; // 排序方向：升序或降序
 }

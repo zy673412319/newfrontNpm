@@ -9,10 +9,10 @@
  * passportChecker      验证护照（包含香港、澳门）
  * */
 /**
- * 校验常规数据格式
- * type: email、phone、weixin、qq、url
- * value: 需要检验的内容
- * */ 
+* 校验常规数据格式
+* @param type: email、phone、weixin、qq、url
+* @param value: 需要检验的内容
+*/
 export function routineChecker(value: string, type?: string): { res: boolean; msg: string } {
   var allReg: RegExp | string = '';
   var backVal:string = '';
@@ -43,7 +43,11 @@ export function routineChecker(value: string, type?: string): { res: boolean; ms
   return data;
 }
 
-// 是否车牌号
+
+/**
+* 是否车牌号
+* @param value: 需要检验的内容
+*/
 export interface CarNoValidationResult {
   res: boolean;
   msg: string;
@@ -69,7 +73,11 @@ export function carNoQChecker(value: string): CarNoValidationResult {
   return data;
 };
 
-// 身份证号校验
+
+/**
+* 身份证号校验
+* @param card: 需要检验的内容
+*/
 export const idCardChecker = (card: string): { res: boolean; msg: string } => {
   let pass = true;
   let sex = '';
@@ -206,7 +214,10 @@ function IdentityCode_changeFivteenToEighteen(card:string) {  //15位转18位身
 }
 
 
-// 银行卡号码校验（luhn算法）
+/**
+* 银行卡号码校验（luhn算法）
+* @param cardNumber: 需要检验的内容
+*/
 export const bankCardChecker = (cardNumber: string): { res: boolean; msg: string } => {
   let msgBankCard = '';
   const pattern: RegExp = /^(?:[1-9]\d{15}|[1-9]\d{17}|[1-9]\d{18})$/;
@@ -240,7 +251,11 @@ export const bankCardChecker = (cardNumber: string): { res: boolean; msg: string
 };
 
 
-// 是否包含中文的字符串
+/**
+* 是否包含中文的字符串
+* @param s: 需要检验的内容
+* @param num: 需要检验的内容长度
+*/
 export const cnChecker = (s: string, num?: number): { res: boolean; msg: string } => {
   let msgCn = '';
   const count: number = num || 4;
@@ -262,6 +277,7 @@ export const cnChecker = (s: string, num?: number): { res: boolean; msg: string 
 /**
 *  判断是否是数字
 * @param {Number} data
+* @param num: 需要检验的内容长度
 */
 export const numChecker = (value: number, num?: number): { res: boolean; msg: string } => {
   let msgNum = '';
@@ -282,7 +298,11 @@ export const numChecker = (value: number, num?: number): { res: boolean; msg: st
 };
 
 
-// 验证护照（包含香港、澳门）
+/**
+* 验证护照（包含香港、澳门）
+* @param passportNumber: 需要检验的内容
+* @param country: china、international、us
+*/
 export const passportChecker = (passportNumber: string, country?: string): { res: boolean; msg: string } => {
   let regex: RegExp;
   const value: string = country || 'china';
