@@ -5,9 +5,36 @@
 
 ## Install(安装)
 
-npm install winnerfrontnpm --save
+npm install newfrontnpm --save
 
-## 正则校验
+## 使用
+#### import { routineChecker, passportChecker } from 'newfrontnpm';
+> import 方法名，目前包含21个，如：
+> 1、routineChecker   校验常规数据
+> 2、carNoQChecker   是否车牌号
+> 3、idCardChecker  身份证号校验
+> 4、bankCardChecker   银行卡号码校验（luhn算法）
+> 5、cnChecker      是否包含中文的字符串
+> 6、numChecker  是否是数字
+> 7、passportChecker      验证护照（包含香港、澳门）
+> 8、telFormat  手机号前三后四显示
+> 9、firstLetterUpper  字符串首字母大写
+> 10、dateFormat    格式化日期
+> 11、beforeDateFormat    刚刚、几天前、几个月前、几年前
+> 12、calculateDiffTime   时间差
+> 13、getWeek   星期几
+> 14、numFilterThreeCut    数字 逢三一断
+> 15、digitUppercase       数字转为大写金额
+> 16、changeToChinese      将阿拉伯数字翻译成中文的大写数字
+> 17、urlToObject          获取链接参数  根据&划分
+> 18、uniqueArrayAndObject 数组去重
+> 19、sortArray            数组排序
+> 20、getLastTime          获取前、后 几天 日期
+> 21、getDateOfWeek        获取该日期所在周，周一到周天的日期
+
+<br><br>
+
+## 说明：正则校验
 
 ### 1、routineChecker(val,type)常规校验，包括email、 phone 、weixin、qq、url
 #### 调用：routineChecker(校验值，校验类型type)
@@ -216,7 +243,7 @@ var passport1 = passportChecker("A123456789A","international");
 <br><br>
 
 
-## 常用方法
+## 说明：常用方法
 
 ### 1、telFormat(val)手机号码前三后四显示
 ```javascript
