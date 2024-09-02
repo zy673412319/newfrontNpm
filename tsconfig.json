@@ -25,11 +25,13 @@
     "noUnusedLocals": false, // 关闭未使用局部变量的警告
     "noUnusedParameters": false // 关闭未使用参数的警告
   },
+  // 包含
   "include": [
     "src/**/*.ts",
     "src/**/*.vue",
     "__tests__"
   ],
+  // 排除  生产.d.ts
   "exclude": [
     "node_modules",
     "dist"
